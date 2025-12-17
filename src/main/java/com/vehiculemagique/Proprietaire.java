@@ -1,3 +1,5 @@
+package com.vehiculemagique;
+
 public class Proprietaire {
 
     private String nom;

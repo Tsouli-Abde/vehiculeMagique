@@ -1,23 +1,19 @@
 
+package com.vehiculemagique;
+
 /**
- * Décrivez votre classe Vehicule ici.
- *
- * @author (votre nom)
- * @version (un numéro de version ou une date)
+ * Représente un véhicule simple pouvant rouler et être associé à un propriétaire.
  */
-public class VehiculeTest
-{
+public class Vehicule {
     private Proprietaire proprietaire;
 
-    // variables d'instance - remplacez l'exemple qui suit par le vôtre
     private String immatriculation;
     private int kilometrage;
     
     /**
      * Constructeur d'objets de classe Vehicule
      */
-    public VehiculeTest(String immatriculation)
-    {
+    public Vehicule(String immatriculation) {
         // initialisation des variables d'instance
         this.immatriculation = immatriculation;
         this.kilometrage = 0;
@@ -44,11 +40,11 @@ public class VehiculeTest
         this.kilometrage = kilometrage;
     }
     
-    public void rouler(int km) {
-        if (km < 0) {
+    public void rouler(int kilometrage) {
+        if (kilometrage < 0) {
             throw new IllegalArgumentException("km doit être >= 0");
         }
-        kilometrage += km;
+        this.kilometrage += kilometrage;
     }
 
 }

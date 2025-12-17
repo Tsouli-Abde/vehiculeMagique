@@ -56,17 +56,23 @@ Le projet met en œuvre une **association unidirectionnelle** avec une multiplic
 
 ---
 
-## 🧪 Tests Unitaires (JUnit)
+## 🧪 Tests automatisés (JUnit & Cucumber)
 
-La fiabilité du code est assurée par la classe de test `VehiculeTest`. Une méthode `setUp()` (@BeforeEach) est utilisée pour créer une "fixture" propre avant chaque test (un véhicule "AA-123-BB" et un propriétaire "Lilia").
+Le projet est désormais bâti avec **Maven**. Deux types de tests sont exécutés via `mvn test` :
 
-| Scénario de Test | Description | Résultat Attendu |
-| :--- | :--- | :--- |
-| **Initialisation** | Vérifie l'état initial de l'objet après construction. | Kilométrage = 0, Immatriculation correcte. |
-| **Rouler** | Vérifie l'incrémentation du compteur. | 100 km + 50 km = 150 km. |
-| **Rouler Négatif** | Tente de faire rouler le véhicule avec une distance négative (-10). | Lève une `IllegalArgumentException`. |
-| **Modification** | Teste le changement d'immatriculation via le setter. | La nouvelle immatriculation est bien enregistrée. |
-| **Collaboration** | Teste le calcul d'assurance après un trajet de 2500 km. | Coût assurance = 302 (300 + 2500/1000). |
+1. **Tests unitaires JUnit 5**
+   * La classe `src/test/java/com/vehiculemagique/VehiculeTest.java` vérifie les règles de base (initialisation, incrément du kilométrage, erreur sur distance négative, etc.).
+2. **Scénarios Cucumber**
+   * Les scénarios Gherkin vivent dans `src/test/resources/features/vehicule.feature`.
+   * Les steps sont définis dans `src/test/java/com/vehiculemagique/steps/VehiculeSteps.java` et exécutés par `VehiculeCucumberTest`.
+
+Exemple de commande :
+
+```bash
+mvn test
+```
+
+La sortie affiche les résultats détaillés des scénarios et des tests unitaires.
 
 ---
 
