@@ -1,3 +1,5 @@
+![Véhicule Magique](captures/voitureMagique.png)
+
 # 🚗 L'Odyssée du Véhicule Magique
 
 Bienvenue, voyageur ! Ce n'est pas simplement du code que vous voyez ici, mais le grimoire numérique d'un **Véhicule Magique**.
