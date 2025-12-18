@@ -64,7 +64,7 @@ Si vous préférez une manipulation directe :
 
 Après avoir maîtrisé les premiers sortilèges, notre Véhicule Magique a dû affronter des épreuves plus subtiles, réservées aux mages confirmés. Cette seconde itération raconte comment l’univers a gagné en profondeur, en robustesse et en sagesse.
 
-### 🧩 Épreuve 14 — Le Lien Sacré
+### Le Lien Sacré
 **Association bidirectionnelle 0..1 ↔ \***
 
 Jusqu’ici, le pacte entre le véhicule et son propriétaire était simple. Mais le monde réel est plus complexe :
@@ -78,7 +78,7 @@ Ce lien a été **soigneusement encapsulé** afin de garantir la cohérence des 
 
 Des **tests unitaires dédiés** (`ProprietaireVehiculeAssociationTest`) vérifient que si j'achète une voiture, elle sait que je suis son propriétaire, et je sais qu'elle est à moi.
 
-### 🔧 Épreuve 15 — L’Art du Raffinement
+### L’Art du Raffinement
 **Techniques de refactoring**
 
 Un bon sorcier sait que la puissance ne suffit pas : le code doit rester **clair et élégant**.
@@ -94,7 +94,7 @@ La méthode qui fait avancer le véhicule a été renommée pour être plus pré
 La logique de calcul du surcoût d'assurance était cachée au milieu d'une formule. Elle a été extraite dans une méthode privée `calculerSurcoutKilometrique` dans la classe `Proprietaire`.
 *Gain* : La formule principale est plus lisible, et le détail du calcul est isolé.
 
-### 🧪 Épreuve 16 — La Malédiction du « Test Infected »
+### La Malédiction du « Test Infected »
 
 En parcourant le site officiel de **JUnit** et en lisant l’article mythique *« Test Infected »* de Beck et Gamma, une vérité s’est imposée :
 
@@ -106,7 +106,7 @@ Au lieu d'écrire 50 fois le même test pour 50 distances différentes, nous don
 *   `10 + 0 + 5 = 15`
 ...et le test s'exécute pour chacun d'eux. Magique !
 
-### 🖥️ Épreuve 17 — Le Rituel de l’Invocation
+### Le Rituel de l’Invocation
 **Exécution des tests en ligne de commande**
 
 Un sort n’est véritablement fiable que s’il fonctionne hors de l’IDE. Les tests ont été exécutés via la commande suprême :
