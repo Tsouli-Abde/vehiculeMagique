@@ -2,64 +2,85 @@
 
 # 🚗 L'Odyssée du Véhicule Magique
 
-Bienvenue, voyageur ! Ce n'est pas simplement du code que vous voyez ici, mais le grimoire numérique d'un **Véhicule Magique**.
+Bienvenue dans ce guide interactif. Nous allons construire pas à pas notre **Véhicule Magique** à l'aide de BlueJ. Suivez le guide !
 
-Ce projet a pour vocation d'initier les apprentis sorciers (vous !) aux arcanes de la **Programmation Orientée Objet**, en donnant vie à un véhicule capable de prouesses extraordinaires.
+## 1. La Genèse : Création de la Classe `Vehicule` 🚘
+Nous avons conçu la classe `Vehicule`, la pierre angulaire de notre application. Elle modélise un véhicule simple grâce à son **immatriculation** 🪪 et son **kilométrage** 📏, offrant ainsi une représentation simple et claire.
 
----
+### Code initial et Compilation 🛠️
+La classe `Vehicule` contient deux attributs principaux et la méthode `rouler(int km)` 🚦 pour simuler l'utilisation réelle sur la route 🛣️.
 
-## 📖 Le Livre des Légendes (Fonctionnalités)
+La compilation dans BlueJ permet de vérifier que le code est syntaxiquement correct ✅. Une classe affichée sans hachures signifie que la compilation a été réalisée avec succès.
 
-Découvrez les aventures que notre véhicule peut vivre. Chaque chapitre raconte une histoire, et pour les plus curieux, un parchemin magique (User Story) détaille les règles de l'univers.
-
-### Chapitre 1 : La Route Infinie 🛣️
-Notre véhicule est un explorateur né. Il parcourt le monde, et son compteur garde la mémoire de chaque lieue traversée.
-Mais attention ! Le temps ne s'inverse pas, et notre véhicule ne peut pas "dé-rouler" pour rajeunir. Toute tentative de reculer le compteur (kilomètres négatifs) se heurtera à une barrière magique.
-
-📜 **Le Parchemin des Règles (Specs) :**
-👉 **[Lire l'histoire complète (Feature Suivi Kilométrage)](src/test/resources/features/SuiviKilometrage.feature)**
-
-### Chapitre 2 : Le Pacte du Cavalier 🤝
-Un véhicule sans conducteur est une âme en peine. Il cherche son compagnon de route. Une fois le pacte scellé, le véhicule connaît son propriétaire, et le propriétaire peut veiller sur sa monture. C'est une alliance sacrée.
-
-📜 **Le Parchemin des Règles (Specs) :**
-👉 **[Lire l'histoire complète (Feature Association Propriétaire)](src/test/resources/features/AssocierProprietaire.feature)**
-
-### Chapitre 3 : Le Tribut de la Protection 🛡️
-Dans ce monde, la sécurité a un prix. Mais pas n'importe lequel ! Le coût de la protection (l'assurance) est calculé par une formule alchimique précise, basée sur l'expérience du véhicule (son kilométrage). Plus il a voyagé, plus le tribut évolue.
-
-📜 **Le Parchemin des Règles (Specs) :**
-� **[Lire l'histoire complète (Feature Calcul Assurance)](src/test/resources/features/CalculAssurance.feature)**
+![Code Vehicule](captures/Screenshot%202025-12-18%20at%2014.06.37.png)
+![Compilation Réussie](captures/Screenshot%202025-12-18%20at%2014.06.55.png)
 
 ---
 
-## 🧙‍♂️ Le Coin des Sorciers (Guide Technique)
+## 2. Premiers Pas : Interaction avec l'Objet 🧩
+Nous avons instancié un objet `Vehicule` de manière interactive grâce à BlueJ 🖱️. Cette approche permet de manipuler directement l’objet 🛠️ et de tester son comportement sans écrire de code supplémentaire.
 
-Pour ceux qui souhaitent voir les rouages internes ou modifier l'enchantement, voici les instructions du grand œuvre.
+### Instanciation et Inspection 🧐
+L’inspection d’un objet permet d’observer son état interne 🔍. On constate ainsi que le kilométrage 📏 est initialement fixé à 0 lors de la création de l’objet 🆕✅.
 
-### 🏗 Architecture
-L'univers repose sur deux piliers (classes) :
-*   `Vehicule` : L'entité centrale, gardienne du kilométrage.
-*   `Proprietaire` : L'entité humaine, capable de calculer le coût de l'assurance.
+![Instanciation](captures/Screenshot%202025-12-18%20at%2014.07.16.png)
+![Inspection Initiale](captures/Screenshot%202025-12-18%20at%2014.07.41.png)
 
-### 🧪 Rituels de Vérification (Tests)
-Pour vous assurer que la magie opère sans failles, lancez les incantations suivantes dans votre terminal :
+### En route ! (Appel de méthode) 🚦
+L’appel de la méthode `rouler` entraîne une modification de l’état de l’objet 🔄. Le kilométrage 📏 augmente en fonction de la distance parcourue.
 
-```bash
-mvn test
-```
+![Appel Rouler](captures/Screenshot%202025-12-18%20at%2014.07.52.png)
+![Inspection Après Rouler](captures/Screenshot%202025-12-18%20at%2014.08.36.png)
 
-Cette commande invoquera :
-1.  Les **Tests Unitaires** (JUnit) pour la solidité des briques de base.
-2.  Les **Scénarios Cucumber** (les parchemins cités plus haut) pour vérifier que l'histoire se déroule comme prévu.
+---
 
-### 🚀 Lancement Rapide (BlueJ)
-Si vous préférez une manipulation directe :
-1.  Ouvrez le projet dans **BlueJ**.
-2.  Faites un clic droit sur `Vehicule` pour en invoquer un nouveau (`new Vehicule()`).
-3.  Jouez avec lui ! Faites-le rouler, assignez-lui un propriétaire, et observez la magie opérer sous vos yeux.
+## 3. Le Sceau de la Qualité : Tests Unitaires 🧪
+Ces captures d’écran illustrent l’exécution réussie de tests unitaires pour la classe `Vehicule` à l’aide de JUnit ✅.
+Le véhicule est initialisé avec l’immatriculation « AA-123-BB » dans la méthode `setUp`.
 
+Les quatre tests validés (✓) vérifient :
+1.  **Initialisation** : compteur à 0 km 📏.
+2.  **Méthode `rouler()`** : kilométrage correctement incrémenté 🛣️.
+3.  **Erreurs** : refus des distances négatives (`IllegalArgumentException`) 🚫.
+4.  **Immatriculation** : modification possible après construction 🔧.
 
+Avec 4 exécutions et 0 échec 🎉, la classe est validée.
+
+![Tests JUnit](captures/Screenshot%202025-12-18%20at%2014.08.47.png)
+![Tests JUnit Détail](captures/Screenshot%202025-12-18%20at%2014.09.26.png)
+
+---
+
+## 4. L'Alliance : Ajout du Propriétaire 🧑‍💼
+Nous avons ajouté une seconde classe nommée `Proprietaire` afin de modéliser le propriétaire d’un véhicule 🚘 et enrichir la modélisation 🧩.
+
+### Association Unidirectionnelle 🔗
+La classe `Vehicule` possède une référence optionnelle vers un objet `Proprietaire` 👤.
+Cette association est **unidirectionnelle** ➡️ (le véhicule connaît son propriétaire) et de multiplicité **0..1 vers 0..1**.
+
+![Code Proprietaire](captures/Screenshot%202025-12-18%20at%2014.09.36.png)
+![Diagramme de Classe](captures/Screenshot%202025-12-18%20at%2014.09.44.png)
+
+### Instanciation et Liaison 🚗👤
+Nous avons créé un objet `Proprietaire` puis l’avons associé à un objet `Vehicule` 🔗. Cela illustre la création de liens entre objets à l’exécution ⏱️.
+
+![Liaison Objets](captures/Screenshot%202025-12-18%20at%2014.09.53.png)
+![Inspection Association](captures/Screenshot%202025-12-18%20at%2014.10.41.png)
+
+---
+
+## 5. Collaboration et Assurance 🛡️
+La méthode `calculerAssuranceAnnuelle` de la classe `Proprietaire` utilise l’état du `Vehicule` (kilométrage). C'est une parfaite illustration de la collaboration entre objets.
+
+### Test avec Fixture (Cycle Red/Green)
+Ces captures illustrent la création interactive de la méthode `testAssuranceAvecFixture`.
+1.  **Barre Rouge** 🔴 : Première exécution avec une assertion volontairement erronée pour confirmer l'échec.
+2.  **Barre Verte** 🟢 : Correction et validation de la logique métier (parcours de 2500 km et calcul du coût).
+
+![Test Rouge](captures/Screenshot%202025-12-18%20at%2014.10.51.png)
+![Test Vert](captures/Screenshot%202025-12-18%20at%2014.11.19.png)
+
+---
 ## ✨ Seconde Itération — Les Épreuves Avancées du Véhicule Magique
 
 Après avoir maîtrisé les premiers sortilèges, notre Véhicule Magique a dû affronter des épreuves plus subtiles, réservées aux mages confirmés. Cette seconde itération raconte comment l’univers a gagné en profondeur, en robustesse et en sagesse.
