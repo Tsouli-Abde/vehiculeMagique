@@ -1,86 +1,61 @@
-# 🚗 Projet Véhicule Magique
+# 🚗 L'Odyssée du Véhicule Magique
 
-Ce projet est une application Java conçue pour illustrer les concepts fondamentaux de la **Programmation Orientée Objet (POO)**. Il modélise la gestion d'un véhicule, de son propriétaire et simule des interactions métier comme le calcul d'assurance.
+Bienvenue, voyageur ! Ce n'est pas simplement du code que vous voyez ici, mais le grimoire numérique d'un **Véhicule Magique**.
 
-Le développement a été réalisé avec l'environnement **BlueJ**, permettant une interaction directe avec les objets.
-
----
-
-## 📋 Description
-
-L'application repose sur deux classes principales qui interagissent entre elles. Elle permet de simuler le cycle de vie d'un véhicule (création, déplacement, changement de propriétaire) et d'effectuer des calculs basés sur son état.
-
-### Fonctionnalités principales :
-* **Modélisation d'objets :** Création d'instances de véhicules et de propriétaires.
-* **Simulation de comportement :** Méthode pour faire "rouler" le véhicule et incrémenter son kilométrage.
-* **Gestion des erreurs :** Protection contre les entrées invalides (ex: distance négative).
-* **Collaboration entre classes :** Calcul de coûts basé sur les attributs d'un autre objet.
+Ce projet a pour vocation d'initier les apprentis sorciers (vous !) aux arcanes de la **Programmation Orientée Objet**, en donnant vie à un véhicule capable de prouesses extraordinaires.
 
 ---
 
-## 🏗 Architecture du Code
+## 📖 Le Livre des Légendes (Fonctionnalités)
 
-### 1. Classe `Vehicule`
-C'est la classe centrale du projet.
-* **Attributs :**
-    * `immatriculation` (String) : Identifiant unique du véhicule.
-    * `kilometrage` (int) : Initialisé à **0** par défaut dans le constructeur.
-    * `proprietaire` (Proprietaire) : Référence vers l'objet propriétaire (association 0..1).
-* **Méthodes clés :**
-    * `rouler(int km)` : Ajoute la distance `km` au kilométrage total. Lève une `IllegalArgumentException` si `km < 0`.
-    * `setProprietaire(Proprietaire p)` : Définit le lien vers le propriétaire.
+Découvrez les aventures que notre véhicule peut vivre. Chaque chapitre raconte une histoire, et pour les plus curieux, un parchemin magique (User Story) détaille les règles de l'univers.
 
-### 2. Classe `Proprietaire`
-Représente le possesseur du véhicule.
-* **Attributs :**
-    * `nom` (String) : Le nom de la personne.
-* **Méthode de collaboration :**
-    * `calculerAssuranceAnnuelle(Vehicule v)` : Calcule le coût de l'assurance en fonction du kilométrage du véhicule passé en paramètre.
+### Chapitre 1 : La Route Infinie 🛣️
+Notre véhicule est un explorateur né. Il parcourt le monde, et son compteur garde la mémoire de chaque lieue traversée.
+Mais attention ! Le temps ne s'inverse pas, et notre véhicule ne peut pas "dé-rouler" pour rajeunir. Toute tentative de reculer le compteur (kilomètres négatifs) se heurtera à une barrière magique.
 
-### 📊 Logique Métier (Formule)
+📜 **Le Parchemin des Règles (Specs) :**
+👉 **[Lire l'histoire complète (Feature Suivi Kilométrage)](src/test/resources/features/SuiviKilometrage.feature)**
 
-Le calcul de l'assurance annuelle suit la formule suivante :
+### Chapitre 2 : Le Pacte du Cavalier 🤝
+Un véhicule sans conducteur est une âme en peine. Il cherche son compagnon de route. Une fois le pacte scellé, le véhicule connaît son propriétaire, et le propriétaire peut veiller sur sa monture. C'est une alliance sacrée.
 
-$$
-Coût = 300 + \left( \frac{\text{Kilométrage du véhicule}}{1000} \right)
-$$
+📜 **Le Parchemin des Règles (Specs) :**
+👉 **[Lire l'histoire complète (Feature Association Propriétaire)](src/test/resources/features/AssocierProprietaire.feature)**
+
+### Chapitre 3 : Le Tribut de la Protection 🛡️
+Dans ce monde, la sécurité a un prix. Mais pas n'importe lequel ! Le coût de la protection (l'assurance) est calculé par une formule alchimique précise, basée sur l'expérience du véhicule (son kilométrage). Plus il a voyagé, plus le tribut évolue.
+
+📜 **Le Parchemin des Règles (Specs) :**
+� **[Lire l'histoire complète (Feature Calcul Assurance)](src/test/resources/features/CalculAssurance.feature)**
 
 ---
 
-## 🔗 Relations entre les classes
+## 🧙‍♂️ Le Coin des Sorciers (Guide Technique)
 
-Le projet met en œuvre une **association unidirectionnelle** avec une multiplicité **0..1 vers 0..1**.
-* Le `Vehicule` connaît son `Proprietaire`.
-* Le `Proprietaire` ne stocke pas le véhicule comme attribut, mais l'utilise via ses méthodes (dépendance).
+Pour ceux qui souhaitent voir les rouages internes ou modifier l'enchantement, voici les instructions du grand œuvre.
 
+### 🏗 Architecture
+L'univers repose sur deux piliers (classes) :
+*   `Vehicule` : L'entité centrale, gardienne du kilométrage.
+*   `Proprietaire` : L'entité humaine, capable de calculer le coût de l'assurance.
 
----
-
-## 🧪 Tests automatisés (JUnit & Cucumber)
-
-Le projet est désormais bâti avec **Maven**. Deux types de tests sont exécutés via `mvn test` :
-
-1. **Tests unitaires JUnit 5**
-   * La classe `src/test/java/com/vehiculemagique/VehiculeTest.java` vérifie les règles de base (initialisation, incrément du kilométrage, erreur sur distance négative, etc.).
-2. **Scénarios Cucumber**
-   * Les scénarios Gherkin vivent dans `src/test/resources/features/vehicule.feature`.
-   * Les steps sont définis dans `src/test/java/com/vehiculemagique/steps/VehiculeSteps.java` et exécutés par `VehiculeCucumberTest`.
-
-Exemple de commande :
+### 🧪 Rituels de Vérification (Tests)
+Pour vous assurer que la magie opère sans failles, lancez les incantations suivantes dans votre terminal :
 
 ```bash
 mvn test
 ```
 
-La sortie affiche les résultats détaillés des scénarios et des tests unitaires.
+Cette commande invoquera :
+1.  Les **Tests Unitaires** (JUnit) pour la solidité des briques de base.
+2.  Les **Scénarios Cucumber** (les parchemins cités plus haut) pour vérifier que l'histoire se déroule comme prévu.
+
+### 🚀 Lancement Rapide (BlueJ)
+Si vous préférez une manipulation directe :
+1.  Ouvrez le projet dans **BlueJ**.
+2.  Faites un clic droit sur `Vehicule` pour en invoquer un nouveau (`new Vehicule()`).
+3.  Jouez avec lui ! Faites-le rouler, assignez-lui un propriétaire, et observez la magie opérer sous vos yeux.
 
 ---
-
-## 🚀 Utilisation avec BlueJ
-
-Le projet est optimisé pour l'environnement BlueJ, permettant :
-1.  L'**instanciation interactive** (clic droit sur la classe -> `new Vehicule()`).
-2.  L'**inspection des objets** pour voir l'état interne (kilométrage, références).
-3.  L'**appel de méthodes** direct via l'interface graphique (ex: appeler `rouler(120)`).
-
-> **Note :** La compilation réussie dans BlueJ est indiquée par l'absence de hachures sur les classes.
+*Fait avec ❤️ et un peu de poussière de fée.*
