@@ -1,7 +1,5 @@
 package com.vehiculemagique.steps;
 
-import com.vehiculemagique.Vehicule;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
@@ -9,38 +7,34 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class VehiculeSteps {
 
-    private Vehicule vehicule;
-    private Exception derniereException;
+    private final CucumberContext ctx;
 
-    @Given("un vehicule immatricule {string} avec un kilometrage initial {int}")
-    public void unVehiculeImmatriculeAvecUnKilometrageInitial(String immatriculation, int kilometrageInitial) {
-        vehicule = new Vehicule(immatriculation);
-        vehicule.setKilometrage(kilometrageInitial);
-        derniereException = null;
+    public VehiculeSteps(CucumberContext ctx) {
+        this.ctx = ctx;
     }
 
     @When("je roule de {int} km")
     public void jeRouleDeKm(int km) {
-        vehicule.rouler(km);
+        ctx.vehicule.ajouterKilometres(km);
     }
 
     @When("je tente de rouler de {int} km")
     public void jeTenteDeRoulerDeKm(int km) {
         try {
-            vehicule.rouler(km);
+            ctx.vehicule.ajouterKilometres(km);
         } catch (Exception e) {
-            derniereException = e;
+            ctx.derniereException = e;
         }
     }
 
     @Then("le kilometrage vaut {int}")
     public void leKilometrageVaut(int attendu) {
-        assertEquals(attendu, vehicule.getKilometrage());
+        assertEquals(attendu, ctx.vehicule.getKilometrage());
     }
 
     @Then("une exception IllegalArgumentException est levee")
     public void uneExceptionIllegalArgumentExceptionEstLevee() {
-        assertNotNull(derniereException, "Une exception aurait dû être levée");
-        assertTrue(derniereException instanceof IllegalArgumentException);
+        assertNotNull(ctx.derniereException, "Une exception aurait dû être levée");
+        assertTrue(ctx.derniereException instanceof IllegalArgumentException);
     }
 }

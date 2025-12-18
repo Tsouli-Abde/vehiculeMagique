@@ -27,15 +27,15 @@ class VehiculeTest {
 
     @Test
     void roulerIncrementeLeKilometrage() {
-        vehicule.rouler(100);
-        vehicule.rouler(50);
+        vehicule.ajouterKilometres(100);
+        vehicule.ajouterKilometres(50);
 
         assertEquals(150, vehicule.getKilometrage());
     }
 
     @Test
     void roulerDistanceNegativeLeveUneException() {
-        assertThrows(IllegalArgumentException.class, () -> vehicule.rouler(-10));
+        assertThrows(IllegalArgumentException.class, () -> vehicule.ajouterKilometres(-10));
     }
 
     @Test
@@ -46,7 +46,7 @@ class VehiculeTest {
 
     @Test
     void calculAssuranceUtiliseLeKilometrageDuVehicule() {
-        vehicule.rouler(2500);
+        vehicule.ajouterKilometres(2500);
         assertEquals(302, proprietaire.calculerAssuranceAnnuelle(vehicule));
     }
 }

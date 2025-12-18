@@ -1,50 +1,44 @@
-
 package com.vehiculemagique;
 
-/**
- * Représente un véhicule simple pouvant rouler et être associé à un propriétaire.
- */
 public class Vehicule {
-    private Proprietaire proprietaire;
 
     private String immatriculation;
     private int kilometrage;
-    
-    /**
-     * Constructeur d'objets de classe Vehicule
-     */
+
+    private Proprietaire proprietaire;
+
     public Vehicule(String immatriculation) {
-        // initialisation des variables d'instance
         this.immatriculation = immatriculation;
         this.kilometrage = 0;
         this.proprietaire = null;
     }
-    
-    public Proprietaire getProprietaire() {
-        return proprietaire;
-    }
 
-    public void setProprietaire(Proprietaire proprietaire) {
-        this.proprietaire = proprietaire;
-    }
-    
     public String getImmatriculation() { return immatriculation; }
-    
+    public void setImmatriculation(String immatriculation) { this.immatriculation = immatriculation; }
     public int getKilometrage() { return kilometrage; }
-    
-    public void setImmatriculation(String immatriculation){
-        this.immatriculation = immatriculation;
-    }
-    
-    public void setKilometrage(int kilometrage){
-        this.kilometrage = kilometrage;
-    }
-    
-    public void rouler(int kilometrage) {
-        if (kilometrage < 0) {
-            throw new IllegalArgumentException("km doit être >= 0");
+    public void setKilometrage(int kilometrage) { this.kilometrage = kilometrage; }
+
+    public Proprietaire getProprietaire() { return proprietaire; }
+
+    public void setProprietaire(Proprietaire nouveau) {
+        if (this.proprietaire == nouveau) return;
+
+        Proprietaire ancien = this.proprietaire;
+        this.proprietaire = nouveau;
+
+        // 1) Retirer du côté ancien propriétaire
+        if (ancien != null) {
+            ancien._retirerVehicule(this);
         }
-        this.kilometrage += kilometrage;
+
+        // 2) Ajouter du côté nouveau propriétaire
+        if (nouveau != null) {
+            nouveau._ajouterVehicule(this);
+        }
     }
 
+    public void ajouterKilometres(int km) {
+        if (km < 0) throw new IllegalArgumentException("km doit être >= 0");
+        kilometrage += km;
+    }
 }

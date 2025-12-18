@@ -1,23 +1,58 @@
 package com.vehiculemagique;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
 public class Proprietaire {
 
     private String nom;
+    private List<Vehicule> vehicules;
 
     public Proprietaire(String nom) {
         this.nom = nom;
+        this.vehicules = new ArrayList<>();
     }
 
     public String getNom() {
         return nom;
     }
-    
-     /**
-     * Méthode de collaboration avec Vehicule
-     * Le coût dépend du kilométrage du véhicule
-     */
-    public int calculerAssuranceAnnuelle(Vehicule v) {
-        // Base fixe + contribution du véhicule
-        return 300 + (v.getKilometrage() / 1000);
+
+    public List<Vehicule> getVehicules() {
+        return Collections.unmodifiableList(vehicules);
     }
+
+    //encapsulation
+    public void ajouterVehicule(Vehicule v) {
+        if (v == null)
+            throw new IllegalArgumentException("vehicule null");
+        v.setProprietaire(this); // centralise la cohérence
+    }
+
+    public void retirerVehicule(Vehicule v) {
+        if (v == null)
+            return;
+        if (v.getProprietaire() != this)
+            return;
+        v.setProprietaire(null); // centralise la cohérence
+    }
+
+    // Méthodes internes appelées par Vehicule.setProprietaire pour éviter les boucles
+    void _ajouterVehicule(Vehicule v) {
+        if (!vehicules.contains(v))
+            vehicules.add(v);
+    }
+
+    void _retirerVehicule(Vehicule v) {
+        vehicules.remove(v);
+    }
+
+    public int calculerAssuranceAnnuelle(Vehicule v) {
+        return 300 + calculerSurcoutKilometrique(v);
+    }
+
+    private int calculerSurcoutKilometrique(Vehicule v) {
+        return v.getKilometrage() / 1000;
+    }
+
 }
