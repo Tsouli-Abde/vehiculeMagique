@@ -59,3 +59,67 @@ Si vous préférez une manipulation directe :
 
 ---
 *Fait avec ❤️ et un peu de poussière de fée.*
+
+---
+
+## ✨ Seconde Itération — Les Épreuves Avancées du Véhicule Magique
+
+Après avoir maîtrisé les premiers sortilèges, notre Véhicule Magique a dû affronter des épreuves plus subtiles, réservées aux mages confirmés. Cette seconde itération raconte comment l’univers a gagné en profondeur, en robustesse et en sagesse.
+
+### 🧩 Épreuve 14 — Le Lien Sacré
+**Association bidirectionnelle 0..1 ↔ \***
+
+Jusqu’ici, le pacte entre le véhicule et son propriétaire était simple. Mais le monde réel est plus complexe :
+- un **propriétaire peut posséder plusieurs véhicules**,
+- un **véhicule ne peut avoir qu’un seul propriétaire (ou aucun)**.
+
+Un lien bidirectionnel **0..1 ↔ \*** a donc été instauré entre `Vehicule` et `Proprietaire`.
+Ce lien a été **soigneusement encapsulé** afin de garantir la cohérence des deux côtés. Deux gardiens (méthodes) veillent au grain :
+- `Vehicule.setProprietaire(Proprietaire)` : Le point d'entrée principal.
+- `Proprietaire.ajouterVehicule(Vehicule)` : Une autre voie pour sceller le pacte.
+
+Des **tests unitaires dédiés** (`ProprietaireVehiculeAssociationTest`) vérifient que si j'achète une voiture, elle sait que je suis son propriétaire, et je sais qu'elle est à moi.
+
+### 🔧 Épreuve 15 — L’Art du Raffinement
+**Techniques de refactoring**
+
+Un bon sorcier sait que la puissance ne suffit pas : le code doit rester **clair et élégant**.
+
+Deux techniques de refactoring ont été appliquées :
+
+#### 🔹 Rename
+La méthode qui fait avancer le véhicule a été renommée pour être plus précise.
+*   *Avant* : `rouler()` (C'était vague...)
+*   *Maintenant* : `ajouterKilometres()` (C'est clair !)
+
+#### 🔹 Extract Method
+La logique de calcul du surcoût d'assurance était cachée au milieu d'une formule. Elle a été extraite dans une méthode privée `calculerSurcoutKilometrique` dans la classe `Proprietaire`.
+*Gain* : La formule principale est plus lisible, et le détail du calcul est isolé.
+
+### 🧪 Épreuve 16 — La Malédiction du « Test Infected »
+
+En parcourant le site officiel de **JUnit** et en lisant l’article mythique *« Test Infected »* de Beck et Gamma, une vérité s’est imposée :
+
+> Un développeur doit devenir dépendant de ses tests.
+
+Pour adapter cette philosophie, nous avons invoqué des **Tests Paramétrés** (`VehiculeParameterizedTest`).
+Au lieu d'écrire 50 fois le même test pour 50 distances différentes, nous donnons une liste de cas au test :
+*   `0 + 100 + 50 = 150`
+*   `10 + 0 + 5 = 15`
+...et le test s'exécute pour chacun d'eux. Magique !
+
+### 🖥️ Épreuve 17 — Le Rituel de l’Invocation
+**Exécution des tests en ligne de commande**
+
+Un sort n’est véritablement fiable que s’il fonctionne hors de l’IDE. Les tests ont été exécutés via la commande suprême :
+
+```bash
+mvn test
+```
+
+### 🍀 Épreuve 18 — La Loi de Murphy
+
+> "Tout ce qui est susceptible de mal tourner tournera mal."
+
+Dans notre péripétie, cela s'est vérifié : nous pensions avoir tout prévu, mais qu'arrive-t-il si on essaie d'ajouter un véhicule `null` à un propriétaire ? Ou de retirer un véhicule qui ne nous appartient pas ?
+Heureusement, nos gardes-fous (les exceptions et les checks dans le code) étaient là pour empêcher le chaos.
