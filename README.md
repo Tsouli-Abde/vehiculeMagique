@@ -57,10 +57,6 @@ Si vous préférez une manipulation directe :
 2.  Faites un clic droit sur `Vehicule` pour en invoquer un nouveau (`new Vehicule()`).
 3.  Jouez avec lui ! Faites-le rouler, assignez-lui un propriétaire, et observez la magie opérer sous vos yeux.
 
----
-*Fait avec ❤️ et un peu de poussière de fée.*
-
----
 
 ## ✨ Seconde Itération — Les Épreuves Avancées du Véhicule Magique
 
